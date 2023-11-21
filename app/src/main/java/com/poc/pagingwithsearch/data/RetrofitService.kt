@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 interface RetrofitService {
 
     @GET("discover/movie")
@@ -47,6 +46,5 @@ interface RetrofitService {
             }
             return retrofitService!!
         }
-
     }
 }

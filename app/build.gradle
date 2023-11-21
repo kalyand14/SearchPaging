@@ -2,7 +2,11 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-}
+    id "org.jlleitschuh.gradle.ktlint" version "11.0.0"
+
+    // TODO 2 : Add the plugin to your project
+    id "io.gitlab.arturbosch.detekt" version "1.17.1"
+ }
 
 android {
     namespace 'com.poc.pagingwithsearch'
@@ -34,6 +38,22 @@ android {
     buildFeatures {
         viewBinding true
     }
+}
+
+ktlint {
+    android = true
+    ignoreFailures = false
+    reporters {
+        reporter "plain"
+        reporter "checkstyle"
+        reporter "sarif"
+        reporter "html"
+    }
+}
+
+detekt {
+    config = files("${project.rootDir}/detekt.yml")
+    parallel = true
 }
 
 dependencies {

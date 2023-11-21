@@ -29,7 +29,6 @@ class FilterActivity : AppCompatActivity() {
             Injection.provideViewModelFactory(owner = this)
         )[GenreViewModel::class.java]
 
-
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {

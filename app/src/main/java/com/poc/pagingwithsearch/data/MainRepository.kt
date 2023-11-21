@@ -36,5 +36,4 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
             result.body()?.genres?.let { emit(it) }
         }
     }
-
 }

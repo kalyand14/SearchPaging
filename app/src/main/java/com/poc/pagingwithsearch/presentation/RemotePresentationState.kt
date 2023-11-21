@@ -32,4 +32,3 @@ fun Flow<CombinedLoadStates>.asRemotePresentationState(): Flow<RemotePresentatio
 enum class RemotePresentationState {
     INITIAL, REMOTE_LOADING, SOURCE_LOADING, PRESENTED
 }
-

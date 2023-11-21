@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.poc.pagingwithsearch.data.MainRepository
 import com.poc.pagingwithsearch.presentation.model.UiModel
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class MainViewModel constructor(
     private val mainRepository: MainRepository,
@@ -45,7 +45,6 @@ class MainViewModel constructor(
          }
 
          .cachedIn(viewModelScope)*/
-
 
     /**
      * Stream of immutable states representative of the UI.
@@ -101,7 +100,6 @@ class MainViewModel constructor(
               .flatMapLatest { searchMovie(queryString = it.query) }
               .cachedIn(viewModelScope)*/
 
-
         state = combine(
             searches,
             queriesScrolled,
@@ -119,7 +117,6 @@ class MainViewModel constructor(
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
                 initialValue = UiState()
             )
-
 
         accept = { action ->
             viewModelScope.launch { actionStateFlow.emit(action) }
@@ -153,7 +150,7 @@ class MainViewModel constructor(
                     UiModel.MovieItem(it)
                 }
             }
-            .map {
+           /* .map {
                 it.insertSeparators { before, after ->
                     if (after == null) {
                         // we're at the end of the list
@@ -166,15 +163,14 @@ class MainViewModel constructor(
                     }
                     // check between 2 items
                     if (checkDayDiff(after.movie.release_date, before.movie.release_date) < 0) {
-                        //Insert Date
+                        // Insert Date
                         UiModel.SeparatorItem(after.movie.release_date)
                     } else {
                         // no separator
                         null
                     }
                 }
-            }
-
+            }*/
 }
 
 private const val LAST_QUERY_SCROLLED: String = "last_query_scrolled"

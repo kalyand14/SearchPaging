@@ -1,6 +1,5 @@
 package com.poc.pagingwithsearch.di
 
-import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.savedstate.SavedStateRegistryOwner
 import com.poc.pagingwithsearch.data.MainRepository
@@ -13,11 +12,9 @@ object Injection {
         return MainRepository(RetrofitService.getInstance())
     }
 
-
     fun provideViewModelFactory(
         owner: SavedStateRegistryOwner
     ): ViewModelProvider.Factory {
         return ViewModelFactory(owner, provideMainRepository())
     }
 }
-

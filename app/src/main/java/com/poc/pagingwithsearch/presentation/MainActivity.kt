@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     var totalResults: Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -51,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
                     binding.recyclerview.scrollToPosition(0)
                     viewModel.accept(UiAction.Filter(filter = id.toString()))
-
                 }
             }
 
@@ -106,8 +104,6 @@ class MainActivity : AppCompatActivity() {
             pagingData = viewModel.pagingDataFlow,
             uiActions = viewModel.accept
         )
-
-
     }
 
     private fun ActivityMainBinding.bindState(
@@ -172,7 +168,9 @@ class MainActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun ActivityMainBinding.updateRepoListFromInput(onQueryChanged: (UiAction.Search) -> Unit) {
+    private fun ActivityMainBinding.updateRepoListFromInput(
+        onQueryChanged: (UiAction.Search) -> Unit
+    ) {
         search.text.trim().let {
             /* if (it.isNotEmpty()) {*/
             recyclerview.scrollToPosition(0)
@@ -211,7 +209,6 @@ class MainActivity : AppCompatActivity() {
             Boolean::and
         ).distinctUntilChanged()
 
-
         lifecycleScope.launch {
             pagingData.collectLatest(movieAdapter::submitData)
         }
@@ -226,7 +223,6 @@ class MainActivity : AppCompatActivity() {
             movieAdapter.loadStateFlow.collect { loadState ->
                 // Show a retry header if there was an error refreshing, and items were previously
                 // cached OR default to the default prepend state
-
 
                 header.loadState = loadState.mediator
                     ?.refresh
@@ -244,7 +240,7 @@ class MainActivity : AppCompatActivity() {
                 if (recyclerview.isVisible) {
                     binding.itemCount.isVisible = true
                     binding.itemCount.text =
-                        "Showing ${movieAdapter.itemCount / 2} of ${totalResults}"
+                        "Showing ${movieAdapter.itemCount / 2} of $totalResults"
                 }
 
                 // Show loading spinner during initial load or refresh.
@@ -268,7 +264,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 }

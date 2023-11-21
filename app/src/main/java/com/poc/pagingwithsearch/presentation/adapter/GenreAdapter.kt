@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.poc.pagingwithsearch.R
 import com.poc.pagingwithsearch.domain.Genre
 
-
 class GenreAdapter(
     var arrayList: List<Genre>,
     private val onclick: (Int) -> Unit
@@ -42,10 +41,10 @@ class GenreAdapter(
         holder.radioButton.setOnClickListener {
             if (position == selectedPosition) {
                 holder.radioButton.isChecked = false
-                selectedPosition = -1;
+                selectedPosition = -1
             } else {
-                selectedPosition = position;
-                notifyDataSetChanged();
+                selectedPosition = position
+                notifyDataSetChanged()
             }
         }
     }

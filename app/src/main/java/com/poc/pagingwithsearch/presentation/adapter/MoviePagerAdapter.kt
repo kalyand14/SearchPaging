@@ -41,5 +41,4 @@ class MoviePagerAdapter :
             null -> throw UnsupportedOperationException("Unknown view")
         }
     }
-
 }
